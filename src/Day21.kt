@@ -1,11 +1,12 @@
-data class LineItem(
-    val key1: String,
-    val operator: String,
-    val key2: String,
-    var result: Double?
-)
 
 fun main() {
+    data class LineItem(
+        val key1: String,
+        val operator: String,
+        val key2: String,
+        var result: Double?
+    )
+
     val fileName =
         "Day21_input"
 //        "Day21_sample"
@@ -38,20 +39,10 @@ fun main() {
                     steps[item.key1]?.result != null &&
                     steps[item.key2]?.result != null) {
                     steps[key]?.result = when (item.operator) {
-                        "+" -> steps[item.key2]?.result?.let {
-                            steps[item.key1]?.result?.plus(it)
-                        }
-                        "-" -> {
-                            steps[item.key2]?.result?.let {
-                                steps[item.key1]?.result?.minus(it)
-                            }
-                        }
-                        "*" -> steps[item.key2]?.result?.let {
-                            steps[item.key1]?.result?.times(it)
-                        }
-                        "/" -> steps[item.key2]?.result?.let {
-                            steps[item.key1]?.result?.div(it)
-                        }
+                        "+" -> steps[item.key2]?.result?.let {steps[item.key1]?.result?.plus(it) }
+                        "-" -> steps[item.key2]?.result?.let {steps[item.key1]?.result?.minus(it) }
+                        "*" -> steps[item.key2]?.result?.let {steps[item.key1]?.result?.times(it) }
+                        "/" -> steps[item.key2]?.result?.let {steps[item.key1]?.result?.div(it) }
                         else -> null
                     }
                 }
